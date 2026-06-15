@@ -1,14 +1,15 @@
-# Vikerkleiva foto
+# Birgermfoto
 
 En enkel fotonettside bygget med ren HTML, CSS og JavaScript. Nettsiden er
-laget for publisering med GitHub Pages.
+laget for publisering på `https://www.vikerkleiva.no/birgermfoto/` med GitHub
+Pages.
 
 ## Sider
 
-- Forside: `index.html`
-- Galleri: `galleri/index.html`
-- Om: `om/index.html`
-- Kontakt: `kontakt/index.html`
+- Forside: `birgermfoto/index.html`
+- Galleri: `birgermfoto/galleri/index.html`
+- Om: `birgermfoto/om/index.html`
+- Kontakt: `birgermfoto/kontakt/index.html`
 
 ## Legge til bilder
 
@@ -40,7 +41,7 @@ Bildet øverst på siden bør ikke ha `loading="lazy"`.
 2. Commit og push endringene med GitHub Desktop.
 3. Åpne repository-innstillingene på GitHub.
 4. Velg **Pages** under **Settings**.
-5. Velg publisering fra branch, deretter `master` og mappen `/ (root)`.
+5. Velg publisering fra branch, deretter `main` og mappen `/ (root)`.
 6. Lagre og vent til GitHub viser adressen til nettsiden.
 
 Et eget domene kan kobles til senere uten å endre nettsidens oppbygning.
