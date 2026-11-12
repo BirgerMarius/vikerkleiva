@@ -1,47 +1,31 @@
-# Birgermfoto
+# vikerkleiva.no
 
-En enkel fotonettside bygget med ren HTML, CSS og JavaScript. Nettsiden er
-laget for publisering på `https://www.vikerkleiva.no/birgermfoto/` med GitHub
-Pages.
+Statisk nettsted for **vikerkleiva.no**.
 
-## Sider
+## Struktur
 
-- Forside: `birgermfoto/index.html`
-- Galleri: `birgermfoto/galleri/index.html`
-- Om: `birgermfoto/om/index.html`
-- Kontakt: `birgermfoto/kontakt/index.html`
+- `index.html` – enkel offentlig forside
+- `tour/index.html` – privat-delt reiseplan for Tour de France 2027 (ikke lenket fra forsiden)
+- `scripts/deploy-onecom.sh` – deploy til One.com via SSH/rsync
 
-## Legge til bilder
+## Arbeidsflyt
 
-1. Legg det komprimerte bildet i riktig mappe under `bilder`.
-2. Åpne HTML-filen der bildet skal vises.
-3. Erstatt en plassholder med et bildeelement:
+1. Gjør endringer lokalt eller via Codex.
+2. Commit og push til `main`.
+3. På docker01:
+   ```bash
+   cd /home/aiworker/workspace/projects/vikerkleiva
+   git pull --ff-only origin main
+   ./scripts/deploy-onecom.sh
+   ```
 
-```html
-<img
-  src="../bilder/galleri/filnavn.webp"
-  alt="Kort beskrivelse av motivet"
-  loading="lazy"
->
-```
+## One.com
 
-Bildet øverst på siden bør ikke ha `loading="lazy"`.
+SSH/SFTP:
+- Host: `ssh.c15w4ukrj.service.one`
+- User: `c15w4ukrj_ssh`
+- Port: `22`
 
-## Anbefalt bildeformat
+Passord eller andre hemmeligheter skal aldri lagres i repoet.
 
-- Bruk WebP eller komprimert JPEG.
-- Bruk små bokstaver og bindestrek i filnavn, for eksempel
-  `solnedgang-over-viker.webp`.
-- En bredde på omtrent 1600-2400 piksler er vanligvis nok på en nettside.
-- Prøv å holde hvert bilde under 500 KB når det er mulig.
-
-## Publisere med GitHub Pages
-
-1. Lagre og test endringene lokalt.
-2. Commit og push endringene med GitHub Desktop.
-3. Åpne repository-innstillingene på GitHub.
-4. Velg **Pages** under **Settings**.
-5. Velg publisering fra branch, deretter `main` og mappen `/ (root)`.
-6. Lagre og vent til GitHub viser adressen til nettsiden.
-
-Et eget domene kan kobles til senere uten å endre nettsidens oppbygning.
+Deploy-scriptet forventer at `ONECOM_REMOTE_DIR` peker til webroten på One.com. Eksakt katalog bekreftes etter første SSH-innlogging.
