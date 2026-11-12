@@ -13,12 +13,11 @@ echo "Mål: $USER@$HOST:$REMOTE_DIR"
 
 cd "$ROOT_DIR"
 
-tar -cf - index.html tour/index.html |   ssh -p "$PORT" "$USER@$HOST" "mkdir -p '$REMOTE_DIR/tour' && cd '$REMOTE_DIR' && tar -xf -"
+tar -cf - index.html tour/index.html |   ssh -p "$PORT" "$USER@$HOST" "mkdir -p '$REMOTE_DIR/tour' && cd '$REMOTE_DIR' && tar -xf - && cache-purge"
 
 echo "Deploy fullført."
 echo "Kontroller:"
 echo "  https://vikerkleiva.no/"
 echo "  https://vikerkleiva.no/tour/"
 echo
-echo "Hvis One.com viser gammel cache, kjør på serveren:"
-echo "  cache-purge"
+echo "One.com-cache er tømt automatisk."
