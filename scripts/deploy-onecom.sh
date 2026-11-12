@@ -11,11 +11,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "Deploy av vikerkleiva.no til One.com"
 echo "Mål: $USER@$HOST:$REMOTE_DIR"
 
-ssh -p "$PORT" "$USER@$HOST" "mkdir -p '$REMOTE_DIR/tour'"
+cd "$ROOT_DIR"
 
-scp -P "$PORT"   "$ROOT_DIR/index.html"   "$USER@$HOST:$REMOTE_DIR/index.html"
-
-scp -P "$PORT"   "$ROOT_DIR/tour/index.html"   "$USER@$HOST:$REMOTE_DIR/tour/index.html"
+tar -cf - index.html tour/index.html |   ssh -p "$PORT" "$USER@$HOST" "mkdir -p '$REMOTE_DIR/tour' && cd '$REMOTE_DIR' && tar -xf -"
 
 echo "Deploy fullført."
 echo "Kontroller:"
